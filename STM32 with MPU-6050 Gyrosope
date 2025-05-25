@@ -1,0 +1,39 @@
+#include <Wire.h>
+#define LED_PIN PC13
+int16_t Gyro_X,Gyro_Y,Gyro_Z;
+TwoWire HWire(2, I2C_FAST_MODE);
+
+
+void setup() {
+  pinMode(LED_PIN, OUTPUT);
+  Serial.begin(115200);
+  Serial.begin(57600);
+  HWire.setClock(400000);
+  HWire.begin();
+  delay(250);
+
+  HWire.beginTransmission(0x68);
+  HWire.write(0x6B);
+  HWire.write(0x00);
+  HWire.endTransmission();
+}
+void loop(){
+  digitalWrite(LED_PIN, HIGH);
+  delay(250);
+  digitalWrite(LED_PIN, LOW);
+  delay(250);
+  HWire.beginTransmission(0x68);
+  HWire.write(0x43);
+  HWire.endTransmission();
+  HWire.requestFrom(0x68,6);
+  Gyro_X = HWire.read()<<8 | HWire.read();
+  Gyro_Y = HWire.read()<<8 | HWire.read();
+  Gyro_Z = HWire.read()<<8 | HWire.read();
+  Serial.print("X = ");
+  Serial.print(Gyro_X);
+  Serial.print("    Y = ");
+  Serial.print(Gyro_Y);
+  Serial.print("    Z = ");
+  Serial.println(Gyro_Z);
+  delay(250);
+}
