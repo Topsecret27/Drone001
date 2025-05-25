@@ -79,6 +79,41 @@
 
 ตัวอย่างแผ่น PCB >> [Gerber file](https://drive.google.com/file/d/1rVaxm7_zVle_P_GNF3kI6zMYXvFKWtAF/view?usp=drive_link)
 
- <img src="https://i.pinimg.com/736x/e9/6c/7f/e96c7f9709690578e45c6de65e95e0bc.jpg" width="300"/>
+   <img src="https://i.pinimg.com/736x/e9/6c/7f/e96c7f9709690578e45c6de65e95e0bc.jpg" width="300"/>
 
- <img src="https://i.pinimg.com/736x/0c/71/2c/0c712cf1a9b2201280cd837534e7aacc.jpg" width="300"/>
+   <img src="https://i.pinimg.com/736x/0c/71/2c/0c712cf1a9b2201280cd837534e7aacc.jpg" width="300"/>
+
+### การอัพโหลดโค้ดลงบนบอร์ด STM32F103C8T6
+STM32 เป็นชิปที่สร้างโดย STMicroelectronics ภายในใช้ CPU ARM Cortex - M3 ขนาด 32bit ซึ่งออกแบบมาเพื่อไมโครคอนโทรลเลอร์โดยเฉพาะ
+
+<br> ข้อมูลเกี่ยวกับบอร์ด STM32F103C8T6
+* RAM 20 kB, ROM 64 kB
+* รองรับการเชื่อมต่ออุปกรณ์ภายนอกผ่าน GPIO จำนวน 37 ช่อง, ADC จำนวน 10 ช่อง, UART จำนวน 3 ช่อง, I2C จำนวน 2 ช่อง, SPI จำนวน 2 ช่อง, CAN bus และ USB อย่างละ 1 ช่อง
+* มี Timer ให้ใช้งานจำนวน 3 ตัว รองรับการสร้างสัญญาณ PWM ได้สูงสุด 4 ช่อง
+* มี Watchdog Timers จำนวน 2 ตัว 
+* มี DMA จำนวน 7 ช่อง รองรับ Timer, SPI, I2C, ADC, UART
+* รองรับการเขียนโปรแกรมด้วย Arduino IDE, STM32CubeIDE, ARM Keil + STM32CubeMX
+* อัพโหลดโปรแกรมผ่าน ST-Link V2 หรือผ่าน USB (กรณีลง Bootloader)
+* มีจุดจั้มเปอร์ BOOT0 BOOT1 ใช้บังคับเข้าโหมดอัพโหลดโปรแกรม
+* มีสวิตช์ Reset บนบอร์ด
+* มีหลอดแอลอีดีโปรแกรมได้อิสระ (PC13) จำนวน 1 ดวง และไฟแสดงสถานะได้รับไฟเลี้ยงจำนวน 1 ดวง
+* ใช้แรงดันไฟฟ้า 3.3V ในการทำงาน
+* ขนาด 23 x 53 มิลลิเมตร
+
+   <img src="https://fu.lnwfile.com/_/fu/_raw/bx/rj/lm.png" width="300"/>
+
+ชิปของ STM32 แตกต่างจากชิปตะกูลอื่นๆ ตรงที่ไม่มี IDE และคอมไพล์เลอร์เป็นของตัวเอง การใช้งานต้องดาวน์โหลด IDE และคอมไพล์เลอร์จากบริษัทอื่นมาใช้ ตัวอย่าง IDE และคอมไพล์เลอร์ที่นิยมใช้งานกัน ได้แก่ IAR Embedded Workbench และ ARMmbed
+
+<br> การอัพโหลดโค้ดลงบอร์ด STM32 จำเป็นจะต้องใช้เครื่องอัพโหลดที่ชื่อว่า ST-Link V2 หรือใช้การอัพโหลดผ่าน UART
+
+   <img src="https://www.kroxne.com/4351-large_default/st-link-v2-stm8-stm32-upload-firmware-to-display-or-controller.jpg" width="300"/>
+   
+การอัพโหลดผ่าน ST-Link V2 สามารถต่อวงจรตามรูปด้านล่างนี้
+
+   <img src="https://cz.lnwfile.com/_/cz/_raw/qb/py/oi.png" width="300"/>
+
+อ้างอิงจาก [การใช้งาน STM32 ร่วมกับ Arduino เบื้องต้น](https://www.artronshop.co.th/article/43/%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B9%83%E0%B8%8A%E0%B9%89%E0%B8%87%E0%B8%B2%E0%B8%99-stm32-%E0%B8%A3%E0%B9%88%E0%B8%A7%E0%B8%A1%E0%B8%81%E0%B8%B1%E0%B8%9A-arduino-%E0%B9%80%E0%B8%9A%E0%B8%B7%E0%B9%89%E0%B8%AD%E0%B8%87%E0%B8%95%E0%B9%89%E0%B8%99)
+
+<br> ภาพการทดสอบ MPU-6050 Gyroscope กับบอร์ด STM32 ด้วยโค้ด MPU-6050 with STM32
+
+   <img src="https://i.pinimg.com/736x/ee/ab/52/eeab5291aa73e494b778c754d9d19e10.jpg" width="300"/>
